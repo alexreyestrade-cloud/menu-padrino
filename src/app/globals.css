@@ -47,6 +47,39 @@ body {
   background-clip: text;
 }
 
+/* Hero title animation */
+@keyframes heroReveal {
+  0%   { opacity: 0; transform: translateY(28px) scale(0.94); filter: blur(6px); }
+  60%  { filter: blur(0px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+}
+@keyframes heroGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(245,197,24,0.3), 0 0 60px rgba(245,197,24,0.1); }
+  50%       { text-shadow: 0 0 40px rgba(245,197,24,0.6), 0 0 100px rgba(245,197,24,0.25); }
+}
+@keyframes subtitleFade {
+  0%   { opacity: 0; letter-spacing: 0.6em; }
+  100% { opacity: 1; letter-spacing: 0.4em; }
+}
+@keyframes dividerExpand {
+  0%   { opacity: 0; transform: scaleX(0); }
+  100% { opacity: 1; transform: scaleX(1); }
+}
+
+.hero-title {
+  animation: heroReveal 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both,
+             heroGlow 3s ease-in-out 1.2s infinite;
+}
+.hero-subtitle {
+  animation: subtitleFade 0.8s ease-out 0.05s both;
+}
+.hero-menu-label {
+  animation: heroReveal 0.7s cubic-bezier(0.22,1,0.36,1) 0.7s both;
+}
+.hero-divider {
+  animation: dividerExpand 0.6s ease-out 0.5s both;
+}
+
 /* Section header badge */
 .section-badge {
   background: linear-gradient(135deg, #F5C518, #C9A110);

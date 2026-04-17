@@ -21,17 +21,22 @@ async function kvGet(key: string): Promise<MenuData | null> {
   });
   if (!res.ok) return null;
   const json = await res.json();
-  return json.result ? (JSON.parse(json.result) as MenuData) : null;
+  const result = json.result;
+  if (!result) return null;
+  // KV may return a string or already-parsed object
+  if (typeof result === 'object') return result as MenuData;
+  try { return JSON.parse(result) as MenuData; } catch { return null; }
 }
 
 async function kvSet(key: string, value: MenuData): Promise<void> {
   const cfg = kvConfig();
   if (!cfg) return;
+  // Store as JSON string so GET always returns a string we can parse
   await fetch(`${cfg.url}/set/${key}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${cfg.token}`,
-      'Content-Type': 'application/json',
+      'Content-Type': 'text/plain',
     },
     body: JSON.stringify(value),
   });
@@ -45,9 +50,8 @@ export async function getMenuData(): Promise<MenuData> {
     await kvSet(MENU_KEY, seed);
     return seed;
   } catch {
-    // KV not available — fall through to in-memory
+    // KV not available
   }
-
   if (!inMemoryData) {
     inMemoryData = JSON.parse(JSON.stringify(defaultMenu)) as MenuData;
   }

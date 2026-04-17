@@ -6,7 +6,9 @@
       "Bash(mv next.config.ts next.config.mjs)",
       "Bash(sed -i 's/import type { NextConfig } from .next.;//' next.config.mjs)",
       "Bash(curl -s http://localhost:3000)",
-      "Bash(curl -s -X PUT http://localhost:3000/api/menu -H \"Content-Type: application/json\" -d '{\"sections\":[],\"updatedAt\":\"2024-01-01\"}')"
+      "Bash(curl -s -X PUT http://localhost:3000/api/menu -H \"Content-Type: application/json\" -d '{\"sections\":[],\"updatedAt\":\"2024-01-01\"}')",
+      "Bash(identify \"c:/Users/DELL/Documents/menu-padrino/public/logo.png\")",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

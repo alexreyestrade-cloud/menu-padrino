@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getMenuData, setMenuData } from '@/lib/storage';
 import { verifySession, COOKIE_NAME } from '@/lib/auth';
 import { MenuData } from '@/types/menu';
@@ -20,6 +21,7 @@ export async function PUT(req: NextRequest) {
     const data: MenuData = await req.json();
     data.updatedAt = new Date().toISOString();
     await setMenuData(data);
+    revalidatePath('/');
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error('Error saving menu:', e);
