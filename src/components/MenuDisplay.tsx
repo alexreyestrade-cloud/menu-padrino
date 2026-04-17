@@ -227,17 +227,17 @@ function Header() {
         <span style={{ position:'absolute', bottom:'22%', right:'7%', fontSize:'1.2rem', opacity:0.08, transform:'rotate(-10deg)' }}>🦑</span>
       </div>
 
-      {/* Logo — sin círculo, PNG directo */}
+      {/* Logo — PNG con transparencia, sin recorte */}
       <div className="relative flex justify-center mb-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/logo.png"
           alt="La Palapa del Padrino"
           style={{
-            height: '11rem',
+            height: '15rem',
             width: 'auto',
             objectFit: 'contain',
-            filter: 'drop-shadow(0 0 24px rgba(245,197,24,0.30)) drop-shadow(0 0 48px rgba(0,80,140,0.35))',
+            filter: 'drop-shadow(0 0 28px rgba(245,197,24,0.35)) drop-shadow(0 0 56px rgba(0,80,140,0.40))',
           }}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none';
@@ -315,19 +315,30 @@ function Footer() {
         </div>
         <p className="text-white font-semibold text-sm mb-4">Servicio a Domicilio</p>
 
-        {/* Google Maps */}
+        {/* Google Maps embed */}
+        <div className="rounded-2xl overflow-hidden border border-dark-border mb-3" style={{ height: '220px' }}>
+          <iframe
+            title="Ubicación La Palapa del Padrino"
+            src="https://maps.google.com/maps?q=Colonia+Gabriel+Zepeda,+Tuxtla+Gutierrez,+Chiapas,+Mexico&output=embed&z=15"
+            width="100%"
+            height="100%"
+            style={{ border: 0, display: 'block' }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+
         <a
           href={MAPS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-3 px-5 rounded-xl border border-dark-border text-gray-300 text-sm hover:border-gold/40 hover:text-white transition-all mb-2"
+          className="flex items-center justify-center gap-2 text-gold text-sm hover:underline mb-1"
         >
-          <span className="text-lg">📍</span>
-          <span>Ver ubicación en Google Maps</span>
-          <span className="text-gray-500 text-xs ml-auto">→</span>
+          <span>📍</span>
+          <span>Abrir en Google Maps</span>
         </a>
 
-        <p className="text-gray-500 text-xs leading-relaxed mt-2">
+        <p className="text-gray-500 text-xs leading-relaxed mt-1">
           Fracc. Vida Mejor, Av. Prosperidad, Calle Aries<br />
           Col. Gabriel Zepeda, Tuxtla Gutiérrez, Chiapas
         </p>
