@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getMenuData, setMenuData } from '@/lib/storage';
-import { getSessionFromCookie } from '@/lib/auth';
+import { verifySession, COOKIE_NAME } from '@/lib/auth';
 import { MenuData } from '@/types/menu';
 
 export async function GET() {
@@ -9,14 +9,18 @@ export async function GET() {
 }
 
 export async function PUT(req: NextRequest) {
-  const isAdmin = await getSessionFromCookie();
-  if (!isAdmin) {
+  const token = req.cookies.get(COOKIE_NAME)?.value;
+  if (!token || !(await verifySession(token))) {
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
   }
 
-  const data: MenuData = await req.json();
-  data.updatedAt = new Date().toISOString();
-  await setMenuData(data);
-
-  return NextResponse.json({ ok: true });
+  try {
+    const data: MenuData = await req.json();
+    data.updatedAt = new Date().toISOString();
+    await setMenuData(data);
+    return NextResponse.json({ ok: true });
+  } catch (e) {
+    console.error('Error saving menu:', e);
+    return NextResponse.json({ error: 'Error al guardar' }, { status: 500 });
+  }
 }

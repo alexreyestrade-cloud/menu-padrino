@@ -234,10 +234,10 @@ function Header() {
           src="/logo.png"
           alt="La Palapa del Padrino"
           style={{
-            height: '15rem',
-            width: 'auto',
+            width: 'min(72vw, 22rem)',
+            height: 'auto',
             objectFit: 'contain',
-            filter: 'drop-shadow(0 0 28px rgba(245,197,24,0.35)) drop-shadow(0 0 56px rgba(0,80,140,0.40))',
+            filter: 'drop-shadow(0 0 32px rgba(245,197,24,0.40)) drop-shadow(0 0 64px rgba(0,80,140,0.45))',
           }}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none';

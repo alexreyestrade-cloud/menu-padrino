@@ -33,7 +33,7 @@ async function kvSet(key: string, value: MenuData): Promise<void> {
       Authorization: `Bearer ${cfg.token}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(JSON.stringify(value)),
+    body: JSON.stringify(value),
   });
 }
 
