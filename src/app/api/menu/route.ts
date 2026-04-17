@@ -3,6 +3,8 @@ import { getMenuData, setMenuData } from '@/lib/storage';
 import { verifySession, COOKIE_NAME } from '@/lib/auth';
 import { MenuData } from '@/types/menu';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const data = await getMenuData();
   return NextResponse.json(data);
