@@ -10,7 +10,7 @@ export async function GET() {
 
 export async function PUT(req: NextRequest) {
   const token = req.cookies.get(COOKIE_NAME)?.value;
-  if (!token || !(await verifySession(token))) {
+  if (!token || !verifySession(token)) {
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
   }
 

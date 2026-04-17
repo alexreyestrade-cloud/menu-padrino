@@ -1,33 +1,29 @@
-import { SignJWT, jwtVerify } from 'jose';
+import crypto from 'crypto';
 import { cookies } from 'next/headers';
 
-const COOKIE_NAME = 'padrino_admin_session';
-const SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'fallback-dev-secret-change-in-production'
-);
+export const COOKIE_NAME = 'padrino_admin_session';
 
-export async function createSession(): Promise<string> {
-  return new SignJWT({ role: 'admin' })
-    .setProtectedHeader({ alg: 'HS256' })
-    .setExpirationTime('24h')
-    .setIssuedAt()
-    .sign(SECRET);
+function getAdminToken(): string {
+  const secret = process.env.JWT_SECRET || 'fallback-dev-secret-change-in-production';
+  const password = process.env.ADMIN_PASSWORD || 'admin123';
+  return crypto.createHmac('sha256', secret).update(password).digest('hex');
 }
 
-export async function verifySession(token: string): Promise<boolean> {
+export function createSession(): string {
+  return getAdminToken();
+}
+
+export function verifySession(token: string): boolean {
+  return token === getAdminToken();
+}
+
+export async function getSessionFromCookie(): Promise<boolean> {
   try {
-    await jwtVerify(token, SECRET);
-    return true;
+    const cookieStore = await cookies();
+    const token = cookieStore.get(COOKIE_NAME)?.value;
+    if (!token) return false;
+    return verifySession(token);
   } catch {
     return false;
   }
 }
-
-export async function getSessionFromCookie(): Promise<boolean> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(COOKIE_NAME)?.value;
-  if (!token) return false;
-  return verifySession(token);
-}
-
-export { COOKIE_NAME };

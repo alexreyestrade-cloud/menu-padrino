@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createSession, COOKIE_NAME } from '@/lib/auth';
+import { createSession, verifySession, COOKIE_NAME } from '@/lib/auth';
 
 export async function POST(req: NextRequest) {
   const { password } = await req.json();
@@ -9,14 +9,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Contraseña incorrecta' }, { status: 401 });
   }
 
-  const token = await createSession();
-
+  const token = createSession();
   const response = NextResponse.json({ ok: true });
   response.cookies.set(COOKIE_NAME, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
-    maxAge: 60 * 60 * 24, // 24 hours
+    maxAge: 60 * 60 * 24,
     path: '/',
   });
 
@@ -27,4 +26,9 @@ export async function DELETE() {
   const response = NextResponse.json({ ok: true });
   response.cookies.delete(COOKIE_NAME);
   return response;
+}
+
+export async function GET(req: NextRequest) {
+  const token = req.cookies.get(COOKIE_NAME)?.value;
+  return NextResponse.json({ authenticated: !!token && verifySession(token) });
 }
