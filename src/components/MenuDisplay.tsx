@@ -190,32 +190,71 @@ function CategoryNav({ sections, active, onSelect }: {
 
 function Header() {
   return (
-    <header className="relative overflow-hidden bg-gradient-to-b from-black to-dark pt-10 pb-8 text-center">
-      {/* Background texture */}
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: 'radial-gradient(circle at 20% 50%, #F5C518 0%, transparent 50%), radial-gradient(circle at 80% 20%, #F5C518 0%, transparent 40%)'
-      }} />
+    <header className="relative overflow-hidden text-center" style={{
+      background: 'linear-gradient(180deg, #020d1a 0%, #041525 35%, #061a2e 60%, #0D0D0D 100%)',
+      paddingTop: '2.5rem',
+      paddingBottom: '3rem',
+    }}>
+      {/* Ocean glow blobs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div style={{
+          position: 'absolute', top: '-10%', left: '-10%',
+          width: '55%', height: '55%', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0,80,140,0.35) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+        }} />
+        <div style={{
+          position: 'absolute', top: '-5%', right: '-10%',
+          width: '50%', height: '50%', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0,100,120,0.25) 0%, transparent 70%)',
+          filter: 'blur(50px)',
+        }} />
+        <div style={{
+          position: 'absolute', bottom: '10%', left: '30%',
+          width: '40%', height: '40%', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(245,197,24,0.07) 0%, transparent 70%)',
+          filter: 'blur(30px)',
+        }} />
+      </div>
+
+      {/* Decorative seafood icons */}
+      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
+        <span style={{ position:'absolute', top:'8%',  left:'4%',  fontSize:'1.6rem', opacity:0.12, transform:'rotate(-15deg)' }}>🦐</span>
+        <span style={{ position:'absolute', top:'15%', right:'5%', fontSize:'1.4rem', opacity:0.10, transform:'rotate(20deg)' }}>🐟</span>
+        <span style={{ position:'absolute', top:'55%', left:'2%', fontSize:'1.2rem', opacity:0.08, transform:'rotate(-8deg)' }}>🦞</span>
+        <span style={{ position:'absolute', top:'60%', right:'3%', fontSize:'1.3rem', opacity:0.09, transform:'rotate(12deg)' }}>🦀</span>
+        <span style={{ position:'absolute', bottom:'18%', left:'8%', fontSize:'1.1rem', opacity:0.07, transform:'rotate(5deg)' }}>🐚</span>
+        <span style={{ position:'absolute', bottom:'22%', right:'7%', fontSize:'1.2rem', opacity:0.08, transform:'rotate(-10deg)' }}>🦑</span>
+      </div>
 
       {/* Logo */}
-      <div className="relative flex justify-center mb-4">
-        <div className="w-28 h-28 rounded-full border-4 border-gold/60 overflow-hidden bg-amber-900/20 flex items-center justify-center shadow-2xl shadow-gold/20">
+      <div className="relative flex justify-center mb-5">
+        <div style={{
+          width: '9rem', height: '9rem',
+          borderRadius: '50%',
+          border: '3px solid rgba(245,197,24,0.55)',
+          overflow: 'hidden',
+          background: 'rgba(139,90,43,0.15)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 0 40px rgba(245,197,24,0.25), 0 0 80px rgba(0,80,140,0.3)',
+        }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.png"
             alt="La Palapa del Padrino"
-            className="w-full h-full object-cover"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = 'none';
-              (e.target as HTMLImageElement).parentElement!.innerHTML = '<span style="font-size:3rem">🎩</span>';
+              (e.target as HTMLImageElement).parentElement!.innerHTML = '<span style="font-size:3.5rem">🎩</span>';
             }}
           />
         </div>
       </div>
 
       {/* Restaurant name */}
-      <p className="text-gray-400 text-sm tracking-[0.3em] uppercase font-light mb-1">La Palapa del</p>
+      <p className="text-blue-300/60 text-xs tracking-[0.4em] uppercase font-light mb-1">La Palapa del</p>
       <h1
-        className="text-5xl sm:text-6xl font-black uppercase tracking-wider text-gradient"
+        className="text-5xl sm:text-7xl font-black uppercase tracking-wider text-gradient"
         style={{ fontFamily: 'Anton, Impact, sans-serif' }}
       >
         Padrino
@@ -223,9 +262,9 @@ function Header() {
 
       {/* Divider */}
       <div className="flex items-center justify-center gap-3 mt-5 mb-4 px-8">
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent to-gold/40" />
-        <span className="text-gold text-lg">✦</span>
-        <div className="h-px flex-1 bg-gradient-to-l from-transparent to-gold/40" />
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, rgba(245,197,24,0.5))' }} />
+        <span className="text-gold">⚓</span>
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(to left, transparent, rgba(245,197,24,0.5))' }} />
       </div>
 
       <h2
@@ -234,6 +273,16 @@ function Header() {
       >
         Nuestro Menú
       </h2>
+
+      {/* Wave SVG at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
+        <svg viewBox="0 0 1200 40" xmlns="http://www.w3.org/2000/svg" style={{ display:'block', width:'100%' }}>
+          <path
+            d="M0,20 C150,40 350,0 600,20 C850,40 1050,5 1200,20 L1200,40 L0,40 Z"
+            fill="#0D0D0D"
+          />
+        </svg>
+      </div>
     </header>
   );
 }

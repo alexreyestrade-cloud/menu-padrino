@@ -5,42 +5,61 @@ const MENU_KEY = 'menu:data';
 
 let inMemoryData: MenuData | null = null;
 
-async function getKV() {
-  if (!process.env.KV_REST_API_URL) return null;
-  try {
-    const { kv } = await import('@vercel/kv');
-    return kv;
-  } catch {
-    return null;
-  }
+function kvConfig() {
+  const url = process.env.KV_REST_API_URL;
+  const token = process.env.KV_REST_API_TOKEN;
+  if (!url || !token) return null;
+  return { url, token };
+}
+
+async function kvGet(key: string): Promise<MenuData | null> {
+  const cfg = kvConfig();
+  if (!cfg) return null;
+  const res = await fetch(`${cfg.url}/get/${key}`, {
+    headers: { Authorization: `Bearer ${cfg.token}` },
+    cache: 'no-store',
+  });
+  if (!res.ok) return null;
+  const json = await res.json();
+  return json.result ? (JSON.parse(json.result) as MenuData) : null;
+}
+
+async function kvSet(key: string, value: MenuData): Promise<void> {
+  const cfg = kvConfig();
+  if (!cfg) return;
+  await fetch(`${cfg.url}/set/${key}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${cfg.token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(JSON.stringify(value)),
+  });
 }
 
 export async function getMenuData(): Promise<MenuData> {
-  const kv = await getKV();
-  if (kv) {
-    try {
-      const data = await kv.get<MenuData>(MENU_KEY);
-      if (data) return data;
-      // Seed initial data
-      await kv.set(MENU_KEY, defaultMenu);
-      return defaultMenu;
-    } catch (e) {
-      console.error('KV error:', e);
-    }
+  try {
+    const data = await kvGet(MENU_KEY);
+    if (data) return data;
+    const seed = JSON.parse(JSON.stringify(defaultMenu)) as MenuData;
+    await kvSet(MENU_KEY, seed);
+    return seed;
+  } catch {
+    // KV not available — fall through to in-memory
   }
 
-  // Local dev fallback: in-memory
   if (!inMemoryData) {
-    inMemoryData = JSON.parse(JSON.stringify(defaultMenu));
+    inMemoryData = JSON.parse(JSON.stringify(defaultMenu)) as MenuData;
   }
-  return inMemoryData!;
+  return inMemoryData;
 }
 
 export async function setMenuData(data: MenuData): Promise<void> {
-  const kv = await getKV();
-  if (kv) {
-    await kv.set(MENU_KEY, data);
+  try {
+    await kvSet(MENU_KEY, data);
     return;
+  } catch {
+    // fall through
   }
   inMemoryData = data;
 }

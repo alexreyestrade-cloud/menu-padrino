@@ -4,36 +4,6 @@ export const defaultMenu: MenuData = {
   updatedAt: new Date().toISOString(),
   sections: [
     {
-      id: 'bebidas',
-      name: 'Bebidas',
-      icon: '🍺',
-      type: 'with-botana',
-      items: [
-        { id: 'agua-mineral', name: 'Agua mineral', price: 30, priceWithBotana: 45, available: true },
-        { id: 'refresco-600', name: 'Refresco de 600 ml', price: 30, priceWithBotana: 50, available: true },
-        { id: 'media-cerveza', name: 'Media de cerveza', price: 35, priceWithBotana: 55, available: true },
-        { id: 'medias-beer', name: 'Medias: Corona, Victoria, Tecate Light, Laguer XX', price: 60, priceWithBotana: 80, available: true },
-        { id: 'familiar-beer', name: 'Familiar: Corona, Tecate Light, Sol, Caguamon Laguer XX', price: 60, priceWithBotana: 80, available: true },
-        { id: 'jarra-michelada', name: 'Jarra de michelada (caguamon)', price: 100, priceWithBotana: 120, available: true },
-        { id: 'jarra-naranjada', name: 'Jarra de naranjada o limonada', price: 100, priceWithBotana: 115, available: true },
-        { id: 'michelada-llevar-1lt', name: 'Michelada para llevar de 1 LT', price: 65, priceWithBotana: 80, available: true },
-        { id: 'michelada-media', name: 'Michelada media', price: 50, priceWithBotana: 60, available: true },
-        { id: 'modelo-lata', name: 'Modelo lata', price: 40, priceWithBotana: 55, available: true },
-      ]
-    },
-    {
-      id: 'charolas',
-      name: 'Charolas de',
-      icon: '🍽️',
-      type: 'single-price',
-      items: [
-        { id: 'botana-chica', name: 'Botana Chica', price: 250, available: true },
-        { id: 'botana-mediana', name: 'Botana Mediana', price: 350, available: true },
-        { id: 'botana-grande', name: 'Botana Grande', price: 450, available: true },
-        { id: 'charola-mariscos', name: 'Mariscos', price: 550, available: true },
-      ]
-    },
-    {
       id: 'platillos',
       name: 'Platillos Tradicionales',
       icon: '🦐',
@@ -65,6 +35,40 @@ export const defaultMenu: MenuData = {
       ]
     },
     {
+      id: 'cocteles',
+      name: 'Cócteles de Camarón',
+      icon: '🍤',
+      type: 'single-price',
+      items: [
+        { id: 'coctel-grande', name: 'Cóctel grande', price: 160, available: true },
+        { id: 'coctel-mediano', name: 'Cóctel mediano', price: 140, available: true },
+      ]
+    },
+    {
+      id: 'cubetazos',
+      name: 'Cubetazos',
+      icon: '🪣',
+      type: 'single-price',
+      items: [
+        { id: 'cubetazo-caguama-botana', name: 'Cubetazo de Caguama con Botana', price: 180, available: true },
+        { id: 'cubetazo-media-botana', name: 'Cubetazo Media con Botana', price: 175, available: true },
+        { id: 'cubetazo-media', name: 'Cubetazo de Media', price: 175, available: true },
+        { id: 'cubetazo-familiar', name: 'Cubetazo Familiar', price: 180, available: true },
+      ]
+    },
+    {
+      id: 'charolas',
+      name: 'Charolas de',
+      icon: '🍽️',
+      type: 'single-price',
+      items: [
+        { id: 'botana-chica', name: 'Botana Chica', price: 250, available: true },
+        { id: 'botana-mediana', name: 'Botana Mediana', price: 350, available: true },
+        { id: 'botana-grande', name: 'Botana Grande', price: 450, available: true },
+        { id: 'charola-mariscos', name: 'Mariscos', price: 550, available: true },
+      ]
+    },
+    {
       id: 'alitas',
       name: 'Alitas',
       icon: '🍗',
@@ -90,25 +94,21 @@ export const defaultMenu: MenuData = {
       ]
     },
     {
-      id: 'cocteles',
-      name: 'Cócteles de Camarón',
-      icon: '🍤',
-      type: 'single-price',
+      id: 'bebidas',
+      name: 'Bebidas',
+      icon: '🍺',
+      type: 'with-botana',
       items: [
-        { id: 'coctel-grande', name: 'Cóctel grande', price: 160, available: true },
-        { id: 'coctel-mediano', name: 'Cóctel mediano', price: 140, available: true },
-      ]
-    },
-    {
-      id: 'cubetazos',
-      name: 'Cubetazos',
-      icon: '🪣',
-      type: 'single-price',
-      items: [
-        { id: 'cubetazo-caguama-botana', name: 'Cubetazo de Caguama con Botana', price: 180, available: true },
-        { id: 'cubetazo-media-botana', name: 'Cubetazo Media con Botana', price: 175, available: true },
-        { id: 'cubetazo-media', name: 'Cubetazo de Media', price: 175, available: true },
-        { id: 'cubetazo-familiar', name: 'Cubetazo Familiar', price: 180, available: true },
+        { id: 'agua-mineral', name: 'Agua mineral', price: 30, priceWithBotana: 45, available: true },
+        { id: 'refresco-600', name: 'Refresco de 600 ml', price: 30, priceWithBotana: 50, available: true },
+        { id: 'media-cerveza', name: 'Media de cerveza', price: 35, priceWithBotana: 55, available: true },
+        { id: 'medias-beer', name: 'Medias: Corona, Victoria, Tecate Light, Laguer XX', price: 60, priceWithBotana: 80, available: true },
+        { id: 'familiar-beer', name: 'Familiar: Corona, Tecate Light, Sol, Caguamon Laguer XX', price: 60, priceWithBotana: 80, available: true },
+        { id: 'jarra-michelada', name: 'Jarra de michelada (caguamon)', price: 100, priceWithBotana: 120, available: true },
+        { id: 'jarra-naranjada', name: 'Jarra de naranjada o limonada', price: 100, priceWithBotana: 115, available: true },
+        { id: 'michelada-llevar-1lt', name: 'Michelada para llevar de 1 LT', price: 65, priceWithBotana: 80, available: true },
+        { id: 'michelada-media', name: 'Michelada media', price: 50, priceWithBotana: 60, available: true },
+        { id: 'modelo-lata', name: 'Modelo lata', price: 40, priceWithBotana: 55, available: true },
       ]
     },
     {
