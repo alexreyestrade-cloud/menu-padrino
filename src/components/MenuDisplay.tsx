@@ -227,28 +227,22 @@ function Header() {
         <span style={{ position:'absolute', bottom:'22%', right:'7%', fontSize:'1.2rem', opacity:0.08, transform:'rotate(-10deg)' }}>🦑</span>
       </div>
 
-      {/* Logo */}
-      <div className="relative flex justify-center mb-5">
-        <div style={{
-          width: '9rem', height: '9rem',
-          borderRadius: '50%',
-          border: '3px solid rgba(245,197,24,0.55)',
-          overflow: 'hidden',
-          background: 'rgba(139,90,43,0.15)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 0 40px rgba(245,197,24,0.25), 0 0 80px rgba(0,80,140,0.3)',
-        }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo.png"
-            alt="La Palapa del Padrino"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = 'none';
-              (e.target as HTMLImageElement).parentElement!.innerHTML = '<span style="font-size:3.5rem">🎩</span>';
-            }}
-          />
-        </div>
+      {/* Logo — sin círculo, PNG directo */}
+      <div className="relative flex justify-center mb-4">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo.png"
+          alt="La Palapa del Padrino"
+          style={{
+            height: '11rem',
+            width: 'auto',
+            objectFit: 'contain',
+            filter: 'drop-shadow(0 0 24px rgba(245,197,24,0.30)) drop-shadow(0 0 48px rgba(0,80,140,0.35))',
+          }}
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = 'none';
+          }}
+        />
       </div>
 
       {/* Restaurant name */}
@@ -287,27 +281,60 @@ function Header() {
   );
 }
 
+const WA_URL = 'https://wa.me/529612668076?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido%20a%20domicilio%20%F0%9F%9B%B5';
+const MAPS_URL = 'https://maps.google.com/maps?q=Fraccionamiento+Vida+Mejor,+Av+Prosperidad,+Calle+Aries,+Colonia+Gabriel+Zepeda,+Tuxtla+Gutierrez,+Chiapas';
+
 function Footer() {
   return (
-    <footer className="bg-black border-t border-dark-border mt-16 py-10 px-4 text-center">
+    <footer className="bg-black border-t border-dark-border mt-16 pb-24 pt-10 px-4 text-center">
       <div className="max-w-sm mx-auto">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <span className="text-gold text-xl">📞</span>
-          <a
-            href="tel:9612668076"
-            className="text-gold font-bold text-2xl tracking-wider hover:text-gold-light transition-colors"
-          >
+
+        {/* WhatsApp pedidos */}
+        <a
+          href={WA_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl font-bold text-white text-base transition-all active:scale-95 mb-4"
+          style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)', boxShadow: '0 4px 24px rgba(37,211,102,0.35)' }}
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '1.4rem', height: '1.4rem', flexShrink: 0 }}>
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.118.549 4.106 1.514 5.836L.057 23.232a.75.75 0 0 0 .92.921l5.4-1.457A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.381l-.375-.214-3.882 1.048 1.048-3.882-.214-.375A9.958 9.958 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+          </svg>
+          Pedir a domicilio por WhatsApp
+        </a>
+
+        <p className="text-gray-500 text-xs mb-5">* El servicio a domicilio tiene costo adicional según la zona</p>
+
+        {/* Teléfono */}
+        <div className="flex items-center justify-center gap-2 mb-1">
+          <span className="text-gold text-lg">📞</span>
+          <a href="tel:9612668076" className="text-gold font-bold text-xl tracking-wider hover:text-gold-light transition-colors">
             (961) 266 80 76
           </a>
         </div>
-        <p className="text-white font-semibold mt-1 mb-1">Servicio a Domicilio</p>
-        <p className="text-gray-400 text-sm leading-relaxed">
+        <p className="text-white font-semibold text-sm mb-4">Servicio a Domicilio</p>
+
+        {/* Google Maps */}
+        <a
+          href={MAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 w-full py-3 px-5 rounded-xl border border-dark-border text-gray-300 text-sm hover:border-gold/40 hover:text-white transition-all mb-2"
+        >
+          <span className="text-lg">📍</span>
+          <span>Ver ubicación en Google Maps</span>
+          <span className="text-gray-500 text-xs ml-auto">→</span>
+        </a>
+
+        <p className="text-gray-500 text-xs leading-relaxed mt-2">
           Fracc. Vida Mejor, Av. Prosperidad, Calle Aries<br />
           Col. Gabriel Zepeda, Tuxtla Gutiérrez, Chiapas
         </p>
+
         <div className="mt-6 flex items-center justify-center gap-3">
           <div className="h-px flex-1 bg-dark-border" />
-          <span className="text-gold/40 text-xs">✦</span>
+          <span className="text-gold/30 text-xs">✦</span>
           <div className="h-px flex-1 bg-dark-border" />
         </div>
         <p className="text-gray-600 text-xs mt-4">La Palapa del Padrino © {new Date().getFullYear()}</p>
@@ -353,6 +380,35 @@ export default function MenuDisplay({ menuData }: { menuData: MenuData }) {
         ))}
       </main>
       <Footer />
+
+      {/* Botón flotante WhatsApp */}
+      <a
+        href={WA_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Pedir por WhatsApp"
+        style={{
+          position: 'fixed', bottom: '1.5rem', right: '1.25rem', zIndex: 50,
+          width: '3.5rem', height: '3.5rem', borderRadius: '50%',
+          background: 'linear-gradient(135deg, #25D366, #128C7E)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 4px 20px rgba(37,211,102,0.5)',
+          transition: 'transform 0.2s, box-shadow 0.2s',
+        }}
+        onMouseEnter={e => {
+          (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1.1)';
+          (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 6px 28px rgba(37,211,102,0.65)';
+        }}
+        onMouseLeave={e => {
+          (e.currentTarget as HTMLAnchorElement).style.transform = 'scale(1)';
+          (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 20px rgba(37,211,102,0.5)';
+        }}
+      >
+        <svg viewBox="0 0 24 24" fill="white" style={{ width: '1.75rem', height: '1.75rem' }}>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.118.549 4.106 1.514 5.836L.057 23.232a.75.75 0 0 0 .92.921l5.4-1.457A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.502-5.238-1.381l-.375-.214-3.882 1.048 1.048-3.882-.214-.375A9.958 9.958 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+      </a>
     </div>
   );
 }
