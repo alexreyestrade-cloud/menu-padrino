@@ -1,20 +1,14 @@
-import crypto from 'crypto';
 import { cookies } from 'next/headers';
 
-export const COOKIE_NAME = 'padrino_admin_session';
-
-function getAdminToken(): string {
-  const secret = process.env.JWT_SECRET || 'fallback-dev-secret-change-in-production';
-  const password = process.env.ADMIN_PASSWORD || 'admin123';
-  return crypto.createHmac('sha256', secret).update(password).digest('hex');
-}
+export const COOKIE_NAME = 'padrino_admin_v2';
 
 export function createSession(): string {
-  return getAdminToken();
+  return process.env.ADMIN_PASSWORD || 'admin123';
 }
 
 export function verifySession(token: string): boolean {
-  return token === getAdminToken();
+  const expected = process.env.ADMIN_PASSWORD || 'admin123';
+  return token.length > 0 && token === expected;
 }
 
 export async function getSessionFromCookie(): Promise<boolean> {

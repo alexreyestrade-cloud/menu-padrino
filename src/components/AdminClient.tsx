@@ -311,18 +311,25 @@ function AdminDashboard({ initialMenu }: { initialMenu: MenuData }) {
 
   const saveChanges = async () => {
     setSaving(true);
-    const res = await fetch('/api/menu', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(menu),
-    });
-    setSaving(false);
-    if (res.ok) {
-      setSaved(true);
-      setTimeout(() => setSaved(false), 3000);
-      router.refresh();
-    } else {
-      alert('Error al guardar. Intenta de nuevo.');
+    try {
+      const res = await fetch('/api/menu', {
+        method: 'PUT',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(menu),
+      });
+      setSaving(false);
+      if (res.ok) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+        router.refresh();
+      } else {
+        const body = await res.json().catch(() => ({}));
+        alert(`Error ${res.status}: ${body.error || 'Error al guardar'}. Recarga la página e intenta de nuevo.`);
+      }
+    } catch (err) {
+      setSaving(false);
+      alert(`Error de red: ${err}. Verifica tu conexión.`);
     }
   };
 
