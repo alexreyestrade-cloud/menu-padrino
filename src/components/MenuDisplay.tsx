@@ -227,18 +227,17 @@ function Header() {
         <span style={{ position:'absolute', bottom:'22%', right:'7%', fontSize:'1.2rem', opacity:0.08, transform:'rotate(-10deg)' }}>🦑</span>
       </div>
 
-      {/* Logo — clip-path oval recorta el fondo blanco */}
+      {/* Logo — PNG 500x500 con transparencia real */}
       <div className="relative flex justify-center mb-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/logo.png"
           alt="La Palapa del Padrino"
           style={{
-            width: 'min(80vw, 26rem)',
+            width: 'min(82vw, 28rem)',
             height: 'auto',
             objectFit: 'contain',
-            clipPath: 'ellipse(41% 36% at 50% 61%)',
-            filter: 'drop-shadow(0 0 20px rgba(245,197,24,0.45)) drop-shadow(0 0 40px rgba(180,120,30,0.30))',
+            filter: 'drop-shadow(0 0 24px rgba(245,197,24,0.50)) drop-shadow(0 0 48px rgba(180,100,20,0.35))',
           }}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = 'none';
