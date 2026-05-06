@@ -1,7 +1,7 @@
 import { MenuData } from '@/types/menu';
 import { defaultMenu } from '@/data/defaultMenu';
 
-const MENU_KEY = 'menu:data';
+const MENU_KEY = 'padrino:menu:data';
 
 let inMemoryData: MenuData | null = null;
 

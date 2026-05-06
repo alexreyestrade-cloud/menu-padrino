@@ -51,7 +51,7 @@ function LoginScreen() {
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            className="w-full bg-[#0D0D0D] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#F5C518] transition-colors"
+            className="w-full bg-[#0D0D0D] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#9B7355] transition-colors"
             placeholder="••••••••"
             required
           />
@@ -59,7 +59,7 @@ function LoginScreen() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-4 bg-[#F5C518] text-black font-bold py-3 rounded-xl hover:bg-[#FFD84D] transition-colors disabled:opacity-50"
+            className="w-full mt-4 bg-[#9B7355] text-white font-bold py-3 rounded-xl hover:bg-[#C4A882] transition-colors disabled:opacity-50"
           >
             {loading ? 'Entrando...' : 'Entrar'}
           </button>
@@ -108,11 +108,11 @@ function ItemForm({
     onSave(form as MenuItem);
   };
 
-  const inp = 'w-full bg-[#0D0D0D] border border-[#2A2A2A] rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[#F5C518] transition-colors';
+  const inp = 'w-full bg-[#0D0D0D] border border-[#2A2A2A] rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-[#9B7355] transition-colors';
   const lbl = 'block text-xs text-gray-400 mb-1';
 
   return (
-    <form onSubmit={handleSubmit} className="bg-[#1A1A1A] rounded-xl p-4 border border-[#F5C518]/30 space-y-3">
+    <form onSubmit={handleSubmit} className="bg-[#1A1A1A] rounded-xl p-4 border border-[#9B7355]/30 space-y-3">
       <div>
         <label className={lbl}>Nombre *</label>
         <input className={inp} value={form.name} onChange={e => set('name', e.target.value)} required />
@@ -161,7 +161,7 @@ function ItemForm({
           id="available"
           checked={form.available}
           onChange={e => set('available', e.target.checked)}
-          className="accent-[#F5C518] w-4 h-4"
+          className="accent-[#9B7355] w-4 h-4"
         />
         <label htmlFor="available" className="text-sm text-gray-300">Disponible</label>
       </div>
@@ -169,7 +169,7 @@ function ItemForm({
       <div className="flex gap-2 pt-1">
         <button
           type="submit"
-          className="flex-1 bg-[#F5C518] text-black font-bold py-2 rounded-lg text-sm hover:bg-[#FFD84D] transition-colors"
+          className="flex-1 bg-[#9B7355] text-white font-bold py-2 rounded-lg text-sm hover:bg-[#C4A882] transition-colors"
         >
           Guardar
         </button>
@@ -239,7 +239,7 @@ function SectionPanel({
             }`}>
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-white truncate">{item.name}</p>
-                <p className="text-xs text-[#F5C518]">
+                <p className="text-xs text-[#9B7355]">
                   {CURRENCY(item.price)}
                   {item.priceWithBotana ? ` / ${CURRENCY(item.priceWithBotana)}` : ''}
                   {item.halfOrderPrice ? ` / ½ ${CURRENCY(item.halfOrderPrice)}` : ''}
@@ -281,7 +281,7 @@ function SectionPanel({
       ) : (
         <button
           onClick={() => setAddingNew(true)}
-          className="w-full py-2 border border-dashed border-[#F5C518]/30 rounded-lg text-[#F5C518]/60 text-sm hover:border-[#F5C518]/60 hover:text-[#F5C518] transition-colors"
+          className="w-full py-2 border border-dashed border-[#9B7355]/30 rounded-lg text-[#9B7355]/60 text-sm hover:border-[#9B7355]/60 hover:text-[#9B7355] transition-colors"
         >
           + Agregar producto
         </button>
@@ -347,7 +347,7 @@ function AdminDashboard({ initialMenu }: { initialMenu: MenuData }) {
             <span className="text-xl">🎩</span>
             <div>
               <p className="text-white font-bold text-sm leading-none">Panel Admin</p>
-              <a href="/" className="text-[#F5C518] text-xs hover:underline">Ver menú →</a>
+              <a href="/" className="text-[#9B7355] text-xs hover:underline">Ver menú →</a>
             </div>
           </div>
           <div className="flex gap-2">
@@ -357,7 +357,7 @@ function AdminDashboard({ initialMenu }: { initialMenu: MenuData }) {
               className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
                 saved
                   ? 'bg-green-600 text-white'
-                  : 'bg-[#F5C518] text-black hover:bg-[#FFD84D]'
+                  : 'bg-[#9B7355] text-white hover:bg-[#C4A882]'
               } disabled:opacity-60`}
             >
               {saving ? 'Guardando...' : saved ? '✓ Guardado' : 'Guardar'}
@@ -380,8 +380,8 @@ function AdminDashboard({ initialMenu }: { initialMenu: MenuData }) {
             onClick={() => setActiveSection(s.id)}
             className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border ${
               activeSection === s.id
-                ? 'bg-[#F5C518] text-black border-[#F5C518]'
-                : 'bg-transparent text-gray-400 border-[#2A2A2A] hover:border-[#F5C518]/50 hover:text-white'
+                ? 'bg-[#9B7355] text-white border-[#9B7355]'
+                : 'bg-transparent text-gray-400 border-[#2A2A2A] hover:border-[#9B7355]/50 hover:text-white'
             }`}
           >
             {s.icon} {s.name}
@@ -394,7 +394,7 @@ function AdminDashboard({ initialMenu }: { initialMenu: MenuData }) {
         {section && (
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-[#F5C518] text-lg">{section.icon}</span>
+              <span className="text-[#9B7355] text-lg">{section.icon}</span>
               <h2 className="text-white font-bold text-lg">{section.name}</h2>
               <span className="text-gray-500 text-sm">
                 ({section.items.filter(i => i.available).length}/{section.items.length} activos)

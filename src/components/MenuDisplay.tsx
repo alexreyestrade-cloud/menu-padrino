@@ -9,8 +9,8 @@ function BotanaHeader() {
   return (
     <div className="grid grid-cols-3 text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2 px-1">
       <span className="col-span-1" />
-      <span className="text-center text-gold">Sin Botana</span>
-      <span className="text-center text-gold">Con Botana</span>
+      <span className="text-center text-gold-light">Sin Botana</span>
+      <span className="text-center text-gold-light">Con Botana</span>
     </div>
   );
 }
@@ -19,8 +19,8 @@ function HalfOrderHeader() {
   return (
     <div className="grid grid-cols-3 text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2 px-1">
       <span className="col-span-1" />
-      <span className="text-center text-gold">Orden</span>
-      <span className="text-center text-gold">½ Orden</span>
+      <span className="text-center text-gold-light">Orden</span>
+      <span className="text-center text-gold-light">½ Orden</span>
     </div>
   );
 }
@@ -176,7 +176,7 @@ function CategoryNav({ sections, active, onSelect }: {
             onClick={() => scrollTo(s.id)}
             className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 border ${
               active === s.id
-                ? 'bg-gold text-black border-gold'
+                ? 'bg-gold text-white border-gold'
                 : 'bg-transparent text-gray-400 border-dark-border hover:border-gold/50 hover:text-white'
             }`}
           >
@@ -191,9 +191,9 @@ function CategoryNav({ sections, active, onSelect }: {
 function Header() {
   return (
     <header className="relative overflow-hidden text-center bg-black pt-10 pb-12">
-      {/* Glow dorado sutil */}
+      {/* Glow ámbar sutil */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 70% 50% at 50% 60%, rgba(245,197,24,0.06) 0%, transparent 70%)',
+        background: 'radial-gradient(ellipse 70% 50% at 50% 60%, rgba(155,115,85,0.07) 0%, transparent 70%)',
       }} />
 
       {/* Decorativos mariscos */}
@@ -216,7 +216,7 @@ function Header() {
             width: 'min(82vw, 28rem)',
             height: 'auto',
             objectFit: 'contain',
-            filter: 'drop-shadow(0 0 24px rgba(245,197,24,0.50)) drop-shadow(0 0 48px rgba(180,100,20,0.35))',
+            filter: 'drop-shadow(0 0 24px rgba(155,115,85,0.50)) drop-shadow(0 0 48px rgba(107,72,48,0.35))',
           }}
           onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
         />
@@ -241,9 +241,9 @@ function Header() {
 
       {/* Divisor animado */}
       <div className="hero-divider flex items-center justify-center gap-3 mt-6 mb-5 px-10">
-        <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, rgba(245,197,24,0.55))' }} />
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(to right, transparent, rgba(155,115,85,0.55))' }} />
         <span className="text-gold text-base">⚓</span>
-        <div className="h-px flex-1" style={{ background: 'linear-gradient(to left, transparent, rgba(245,197,24,0.55))' }} />
+        <div className="h-px flex-1" style={{ background: 'linear-gradient(to left, transparent, rgba(155,115,85,0.55))' }} />
       </div>
 
       <h2

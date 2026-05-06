@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 :root {
-  --gold: #F5C518;
-  --gold-dark: #C9A110;
+  --gold: #9B7355;
+  --gold-dark: #6B4830;
   --bg: #0D0D0D;
   --bg-card: #1A1A1A;
   --bg-hover: #252525;
@@ -39,9 +39,9 @@ body {
   scrollbar-width: none;
 }
 
-/* Gold gradient text */
+/* Café gradient text */
 .text-gradient {
-  background: linear-gradient(135deg, #F5C518, #FFD84D, #C9A110);
+  background: linear-gradient(135deg, #C4A882, #D4B892, #9B7355);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -54,8 +54,8 @@ body {
   100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
 }
 @keyframes heroGlow {
-  0%, 100% { text-shadow: 0 0 20px rgba(245,197,24,0.3), 0 0 60px rgba(245,197,24,0.1); }
-  50%       { text-shadow: 0 0 40px rgba(245,197,24,0.6), 0 0 100px rgba(245,197,24,0.25); }
+  0%, 100% { text-shadow: 0 0 20px rgba(155,115,85,0.40), 0 0 60px rgba(155,115,85,0.15); }
+  50%       { text-shadow: 0 0 40px rgba(155,115,85,0.70), 0 0 100px rgba(155,115,85,0.30); }
 }
 @keyframes subtitleFade {
   0%   { opacity: 0; letter-spacing: 0.6em; }
@@ -82,8 +82,8 @@ body {
 
 /* Section header badge */
 .section-badge {
-  background: linear-gradient(135deg, #F5C518, #C9A110);
-  color: #000;
+  background: linear-gradient(135deg, #9B7355, #6B4830);
+  color: #fff;
   font-family: 'Anton', Impact, sans-serif;
   letter-spacing: 0.08em;
 }

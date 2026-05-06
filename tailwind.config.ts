@@ -10,9 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         gold: {
-          DEFAULT: '#F5C518',
-          dark: '#C9A110',
-          light: '#FFD84D',
+          DEFAULT: '#9B7355',   /* café medio */
+          dark: '#6B4830',      /* espresso */
+          light: '#C4A882',     /* café claro / latte */
         },
         dark: {
           DEFAULT: '#0D0D0D',
