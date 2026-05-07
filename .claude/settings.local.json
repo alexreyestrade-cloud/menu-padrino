@@ -8,7 +8,10 @@
       "Bash(curl -s http://localhost:3000)",
       "Bash(curl -s -X PUT http://localhost:3000/api/menu -H \"Content-Type: application/json\" -d '{\"sections\":[],\"updatedAt\":\"2024-01-01\"}')",
       "Bash(identify \"c:/Users/DELL/Documents/menu-padrino/public/logo.png\")",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(npx vercel *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
